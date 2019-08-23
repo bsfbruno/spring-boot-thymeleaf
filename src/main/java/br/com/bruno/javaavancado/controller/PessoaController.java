@@ -25,7 +25,7 @@ public class PessoaController {
 	@RequestMapping(method = RequestMethod.POST, value = "/salvarpessoa")
 	public String salvar(Pessoa pessoa) {
 		pessoaRepository.save(pessoa);
-		return "cadastro/cadastropessoa";
+		return "redirect:/listarpessoas";
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/listarpessoas")
