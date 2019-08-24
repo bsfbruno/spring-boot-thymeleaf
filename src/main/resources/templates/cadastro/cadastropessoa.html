@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Curso Java Avançado</title>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
@@ -24,9 +24,15 @@
 	</form>
 	
 	<br/>
-	<a href="/listarpessoas" class="waves-effect waves-light btn">Lista de Pessoas Cadastradas</a>
+	<!-- Usar o method post se não quiser que os dados pesquisados apareçam na url -->
+	<form action="/pesquisarpessoa" method="post">
+		<label>Pesquisa por nome</label>
+		<input placeholder="Digite o nome" name="nomepesquisa" />
+		<input class="waves-effect waves-light btn" type="submit" value="Pesquisar" />
+	</form>
 	<br/>
 	<br/>
+	
 	
 	<table class="striped centered">
 		<tr th:each="pessoa : ${pessoas}">
