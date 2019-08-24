@@ -49,4 +49,10 @@ public class PessoaController {
 		modelAndView.addObject("pessoaObj", pessoa);
 		return modelAndView;
 	}
+	
+	@GetMapping("/removerpessoa/{idpessoa}")
+	public String remover(@PathVariable("idpessoa") Long idpessoa) {
+		pessoaRepository.deleteById(idpessoa);
+		return "redirect:/listarpessoas";
+	}
 }
