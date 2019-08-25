@@ -9,43 +9,95 @@
 <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<style type="text/css">
+	table.striped>tbody>tr:nth-child(odd) {
+    	background-color: rgba(65,105,255,0.5);
+	}
+	
+	form input[type = submit] {
+		color: white;
+	}
+</style>
 </head>
 <body>
-	<h2>Cadastro de Pessoa</h2>
-	<form action="/salvarpessoa" method=post th:object="${pessoaObj}">
-		<input type="hidden" th:field="*{id}"/>
-		<label>Nome: </label>
-		<input placeholder="Primeiro nome" name="nome" th:field="*{nome}"/>
-		<label>Sobrenome: </label>
-		<input placeholder="Sobrenome" name="sobrenome" th:field="*{sobrenome}"/>
-		<label>Idade: </label>
-		<input placeholder="Insira a idade" type="number" name="idade" th:field="*{idade}"/>
-		<input class="waves-effect waves-light btn" type="submit" value="Salvar" />
-	</form>
+	<h2>Spring Boot + Thymeleaf + Materialize Design Lite</h2>
+	<h3>Cadastro de Pessoa</h3>
 	
-	<br/>
+	<div class="row">
+		<form id="formpessoa" class="col s12" action="/salvarpessoa" method=post th:object="${pessoaObj}">
+			<input type="hidden" th:field="*{id}"/>
+			
+			<div class="row">
+				<div class="input-field col s6">
+					<label for="nome">Nome: </label>
+					<input placeholder="Primeiro nome" type="text" name="nome" id="nome" th:field="*{nome}"/>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s6">
+					<label for="sobrenome">Sobrenome: </label>
+					<input placeholder="Sobrenome" type="text" name="sobrenome" id="sobrenome" th:field="*{sobrenome}"/>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s2">
+					<label for="idade">Idade: </label>
+					<input placeholder="Insira a idade" type="number" id="idade" name="idade" th:field="*{idade}"/>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="waves-effect waves-light btn" type="submit" value="Salvar" />
+					<input class="waves-effect waves-light btn" type="submit" value="Novo" 
+						onclick="document.getElementById('formpessoa').reset()"/>
+				</div>
+			</div>				
+		</form>
+	</div>
+	
+	<br/>	
 	<!-- Usar o method post se não quiser que os dados pesquisados apareçam na url -->
-	<form action="/pesquisarpessoa" method="post">
-		<label>Pesquisa por nome</label>
-		<input placeholder="Digite o nome" name="nomepesquisa" />
-		<input class="waves-effect waves-light btn" type="submit" value="Pesquisar" />
-	</form>
-	<br/>
-	<br/>
+	<div class="row">
+		<form action="/pesquisarpessoa" method="post" class="col s12">
+			<div class="row">
+				<div class="input-field col s12">
+					<label for="nomepesquisa">Pesquisa por nome</label> 
+					<input id="nomepesquisa" placeholder="Digite o nome" name="nomepesquisa" type="text" />
+					<input class="waves-effect waves-light btn" type="submit" value="Pesquisar" />
+				</div>
+			</div>
+		</form>
+	</div>
 	
-	
-	<table class="striped centered">
-		<tr th:each="pessoa : ${pessoas}">
-			<td th:text="${pessoa.id}"></td>
-			<td th:text="${pessoa.nome}"></td>
-			<td th:text="${pessoa.sobrenome}"></td>
-			<td th:text="${pessoa.idade}"></td>
-			<td><a th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Editar</a></td>
-			<td><a th:href="@{/removerpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Excluir</a></td>
-		</tr>
-	</table>
+	<div class="row">
+		<h3>Lista de Pessoas</h3>
+		<table class="striped centered" >
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>NOME</th>
+					<th>SOBRENOME</th>
+					<th>IDADE</th>
+					<th>EDITAR</th>
+					<th>EXCLUIR</th>
+				</tr>
+			</thead>
+			<tr th:each="pessoa : ${pessoas}">
+				<td th:text="${pessoa.id}"></td>
+				<td th:text="${pessoa.nome}"></td>
+				<td th:text="${pessoa.sobrenome}"></td>
+				<td th:text="${pessoa.idade}"></td>
+				<td><a th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Editar</a></td>
+				<td><a th:href="@{/removerpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Excluir</a></td>
+			</tr>
+		</table>
+	</div>
 	
 	<script type="text/javascript" src="/materialize/js/materialize.js"></script>
-	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>    	
+	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>  	  	
 </body>
 </html>
