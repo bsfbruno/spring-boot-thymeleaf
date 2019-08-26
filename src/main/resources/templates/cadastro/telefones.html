@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Curso Java Avançado</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<style type="text/css">
+	table.striped>tbody>tr:nth-child(odd) {
+    	background-color: rgba(168,168,168,0.5);
+	}
+	
+	form input[type = submit] {
+		color: white;
+	}
+</style>
+</head>
+<body>
+	<h2>Spring Boot + Thymeleaf + Materialize Design Lite</h2>
+	<h3>Cadastro de Pessoa</h3>
+	
+	<a class="waves-effect waves-light btn" href="/cadastropessoa">Cadastro de Pessoa</a>
+	<div th:each="p : ${pessoaObj}">
+		<div class="row">
+			<p>ID: <span th:text="${p.id}"></span></p>
+			<p>NOME: <span th:text="${p.nome}"></span></p>
+			<p>SOBRENOME: <span th:text="${p.sobrenome}"></span></p>
+			<p>IDADE: <span th:text="${p.idade}"></span></p>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="/materialize/js/materialize.js"></script>
+	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>  	  	
+</body>
+</html>

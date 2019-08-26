@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,5 +65,12 @@ public class PessoaController {
 		modelAndView.addObject("pessoas", pessoaRepository.findPessoaByName(nomepesquisa));
 		modelAndView.addObject("pessoaObj", new Pessoa());
 		return modelAndView;
+	}
+	
+	@GetMapping("/telefones/{idpessoa}")
+	public ModelAndView telefones(@PathVariable("idpessoa") Long idpessoa, ModelMap model) {
+		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
+		model.addAttribute("pessoaObj", pessoa.get());
+		return new ModelAndView("cadastro/telefones", model);
 	}
 }
