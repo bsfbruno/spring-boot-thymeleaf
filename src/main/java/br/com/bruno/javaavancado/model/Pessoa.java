@@ -1,7 +1,11 @@
 package br.com.bruno.javaavancado.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +22,10 @@ public class Pessoa implements Serializable{
 	private String nome;
 	private String sobrenome;
 	private Integer idade;
+	
+	@ElementCollection
+	@CollectionTable(name = "telefone")
+	private Set<String> telefones = new HashSet<>();
 	
 	public Pessoa() {		
 	}
