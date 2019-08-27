@@ -31,10 +31,22 @@
 			<p>NOME: <span th:text="${p.nome}"></span></p>
 			<p>SOBRENOME: <span th:text="${p.sobrenome}"></span></p>
 			<p>IDADE: <span th:text="${p.idade}"></span></p>
-			<p>TELEFONE: <span th:text="${p.telefones}"></span></p>
+			<table class="striped">
+				<thead>
+					<tr>
+						<th>Telefones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="fone : ${pessoaObj.telefones}">
+						<td th:text="${fone}"></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
-	
+	<hr/>
+	<br/>
 	<h5>Cadastro de telefones</h5>
 	<div class="row">
 		<form th:action="@{/addfone/{pessoaid}(pessoaid=${pessoaObj.id})}" method="post" class="col s12">
@@ -51,6 +63,8 @@
 			</div>
 		</form>
 	</div>
+	
+	
 	
 	<script type="text/javascript" src="/materialize/js/materialize.js"></script>
 	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>  	  	
