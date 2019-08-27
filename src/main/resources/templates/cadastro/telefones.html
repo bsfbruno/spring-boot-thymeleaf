@@ -31,7 +31,25 @@
 			<p>NOME: <span th:text="${p.nome}"></span></p>
 			<p>SOBRENOME: <span th:text="${p.sobrenome}"></span></p>
 			<p>IDADE: <span th:text="${p.idade}"></span></p>
+			<p>TELEFONE: <span th:text="${p.telefones}"></span></p>
 		</div>
+	</div>
+	
+	<h5>Cadastro de telefones</h5>
+	<div class="row">
+		<form th:action="@{/addfone/{pessoaid}(pessoaid=${pessoaObj.id})}" method="post" class="col s12">
+			<div class="row">
+				<div class="input-field col s6">
+					<label for="numero">Número: </label>
+					<input placeholder="Número do telefone" id="numero" name="telefones" type="text" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s2">
+					<input type="submit" value="Adicionar" class="waves-effect waves-light btn"/>
+				</div>
+			</div>
+		</form>
 	</div>
 	
 	<script type="text/javascript" src="/materialize/js/materialize.js"></script>

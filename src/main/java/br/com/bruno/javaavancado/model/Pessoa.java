@@ -70,6 +70,14 @@ public class Pessoa implements Serializable{
 		this.idade = idade;
 	}
 	
+	public Set<String> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
